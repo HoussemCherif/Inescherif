@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Sculpture de lichen</title>
+    <meta name="description" content="Architecture, urbanisme et conseil." />
+    <meta name="theme-color" content="#f1f4ef" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Police chargée sans bloquer le premier affichage (l'écran de chargement apparaît tout de suite). -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap" /></noscript>
+    <!-- Écran de chargement : retiré par src/main.ts dès la première image de la sculpture. Sans JavaScript, il ne s'affiche pas. -->
+    <script>document.documentElement.dataset.loading = '';</script>
+    <!-- Styles du chargement en ligne : visibles avant la feuille de style principale (et en développement). -->
+    <style>
+      html { background: #f1f4ef; }
+      .loader {
+        position: fixed; inset: 0; z-index: 1;
+        display: grid; place-content: center; justify-items: center; gap: 14px;
+        padding-bottom: 8vh;
+        pointer-events: none;
+        opacity: 0; visibility: hidden;
+        transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 0.7s;
+      }
+      [data-loading] .loader { opacity: 1; visibility: visible; transition: none; }
+      /* Apparition différée : sur une connexion rapide, le chargement ne clignote pas. */
+      .loader > * { animation: loader-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both; }
+      .loader__label {
+        font: 500 10.5px/1 'Jost', 'Futura', 'Avenir Next', 'Century Gothic', 'Helvetica Neue', Arial, sans-serif;
+        letter-spacing: 0.32em; text-indent: 0.32em; text-transform: uppercase;
+        color: #858d86;
+      }
+      .loader__track { position: relative; width: 88px; height: 1px; overflow: hidden; background: #d3d9d1; }
+      /* Animation par transform : elle continue même pendant le calcul de la sculpture. */
+      .loader__bar {
+        position: absolute; top: 0; bottom: 0; left: 0; width: 40%;
+        background: #66743f;
+        animation: loader-sweep 1.3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      }
+      @keyframes loader-in { from { opacity: 0; } }
+      @keyframes loader-sweep { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+      @media (prefers-reduced-motion: reduce) {
+        .loader__bar { width: 100%; opacity: 0.45; animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      Liens à remplacer : toutes les destinations ci-dessous sont des espaces réservés
+      (attribut data-placeholder). Remplacez href par l'URL réelle puis retirez data-placeholder.
+    -->
+    <header class="site-header">
+      <nav class="nav" aria-label="Navigation principale">
+        <!-- Icônes : Tabler Icons (MIT), https://tabler.io/icons -->
+        <ul class="social" aria-label="Réseaux sociaux">
+          <li style="--i: 0">
+            <a href="#" data-placeholder="instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M16.5 7.5v.01" /></svg>
+            </a>
+          </li>
+          <li style="--i: 1">
+            <a href="#" data-placeholder="x" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>
+            </a>
+          </li>
+          <li style="--i: 2">
+            <a href="#" data-placeholder="facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
+            </a>
+          </li>
+          <li style="--i: 3">
+            <a href="#" data-placeholder="youtube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" /><path d="M10 9l5 3l-5 3z" /></svg>
+            </a>
+          </li>
+          <li style="--i: 4">
+            <a href="#" data-placeholder="linkedin" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg>
+            </a>
+          </li>
+        </ul>
+        <ul class="sections">
+          <li style="--i: 5"><a href="#architecture" data-placeholder="architecture">Architecture</a></li>
+          <li style="--i: 6"><a href="#urbanisme" data-placeholder="urbanisme">Urbanisme</a></li>
+          <li style="--i: 7"><a href="#conseil" data-placeholder="conseil">Conseil</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1 class="visually-hidden">Architecture, urbanisme et conseil</h1>
+        <div class="stage" id="stage"></div>
+        <div class="loader" id="loader" role="status">
+          <span class="loader__label">Chargement</span>
+          <span class="loader__track" aria-hidden="true"><span class="loader__bar"></span></span>
+        </div>
+        <span class="scroll-cue" aria-hidden="true"></span>
+        <noscript><p class="noscript">La sculpture animée nécessite JavaScript.</p></noscript>
+      </section>
+
+      <!--
+        Deuxième section : portrait vidéo. Le fond blanc de la vidéo se fond dans la page (mode « produit »).
+        Elle s'ouvre depuis une ligne olive à son arrivée à l'écran, puis se lit en boucle.
+        Le son n'est possible qu'après un geste du visiteur (règle des navigateurs) : sinon, lecture muette et bouton « Activer le son ».
+      -->
+      <section class="portrait-section" aria-label="Portrait">
+        <figure class="portrait" data-portrait>
+          <span class="portrait__line" aria-hidden="true"></span>
+          <div class="portrait__frame">
+            <video class="portrait__video" src="/media/lichen.mp4" muted loop playsinline preload="none" disablepictureinpicture aria-label="Portrait vidéo"></video>
+          </div>
+          <!-- Icônes : Tabler Icons (MIT), volume-3 et volume -->
+          <button class="portrait__sound" type="button" aria-pressed="false" data-sound>
+            <svg class="portrait__icon portrait__icon--off" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" /><path d="M16 10l4 4m0 -4l-4 4" /></svg>
+            <svg class="portrait__icon portrait__icon--on" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 8a5 5 0 0 1 0 8" /><path d="M17.7 5a9 9 0 0 1 0 14" /><path d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a.8 .8 0 0 1 1.5 .5v14a.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" /></svg>
+            <span data-sound-label>Activer le son</span>
+          </button>
+        </figure>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
